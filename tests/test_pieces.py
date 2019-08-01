@@ -230,7 +230,7 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
-        assert len(moves) == 0
+        assert len(moves) == 1
 
     @staticmethod
     def test_black_pawn_cannot_move_at_bottom_of_board():
@@ -245,4 +245,4 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
-        assert len(moves) == 0
+        assert len(moves) == 1
