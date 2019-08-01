@@ -139,7 +139,7 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
-        assert len(moves) == 0
+        assert len(moves) == 1
 
     @staticmethod
     def test_white_pawn_cannot_move_two_squares_if_piece_two_in_front():
