@@ -47,7 +47,7 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
-        assert Square.at(3, 4) in moves
+        assert Square.at(2, 4) in moves
 
     @staticmethod
     def test_black_pawn_can_move_down_two_squares_if_not_moved():
@@ -62,7 +62,7 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
-        assert Square.at(4, 4) in moves
+        assert Square.at(5, 4) in moves
 
     @staticmethod
     def test_white_pawn_cannot_move_up_two_squares_if_already_moved():
