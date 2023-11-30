@@ -92,6 +92,7 @@ class TestPawns:
         board.set_piece(starting_square, pawn)
 
         intermediate_square = Square.at(5, 4)
+        board.current_player = Player.BLACK
         pawn.move_to(board, intermediate_square)
 
         # Act
