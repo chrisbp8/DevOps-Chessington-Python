@@ -27,8 +27,9 @@
         },
         {
             "name": "Python: Current File",
+            "comment": "Needed to run 'Debug Tests' from the Testing Sidebar; see https://github.com/microsoft/vscode-python/issues/10847",
             "type": "python",
-            "request": "test",
+            "request": "test", 
             "console": "integratedTerminal"
         }
     ]
