@@ -80,6 +80,7 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
+        assert Square.at(3, 4) in moves
         assert Square.at(4, 4) not in moves
 
     @staticmethod
@@ -99,4 +100,5 @@ class TestPawns:
         moves = pawn.get_available_moves(board)
 
         # Assert
+        assert Square.at(4, 4) in moves
         assert Square.at(3, 4) not in moves
