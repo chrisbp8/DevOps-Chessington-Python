@@ -90,17 +90,32 @@ export class Board {
     }
   }
 
-  buildClickSquareCallback(rect, i, j) {
+  isSquareInToSquares(row, col) {
+    return this.toSquares.some((square) => square.row == row && square.col == col)
+  }
+
+  buildClickSquareCallback(rect, row, col) {
     const callback = async () => {
-      const piece = this.getPiece(i, j)
+      if (this.selectedSquare && this.isSquareInToSquares(row, col)) {
+        const boardJson = await postPieceMove(this.selectedSquare[0], this.selectedSquare[1], row, col)
+        
+        await this.loadBoardData(boardJson)
+        
+        this.selectedSquare = null
+        this.toSquares = []
+        this.clearSquareSelection()
+        return
+      } 
+      
+      const piece = this.getPiece(row, col)
       if (piece && piece.player == this.currentPlayer) {
         this.clearSquareSelection()
 
         rect.fill(FROM_SQUARE)
 
-        this.selectedSquare = [i, j]
+        this.selectedSquare = [row, col]
 
-        const toSquares = await postPieceSelect(i, j)
+        const toSquares = await postPieceSelect(row, col)
 
         for (const square of toSquares) {
           const squareRect = this.getRect(square.row, square.col)
@@ -108,19 +123,7 @@ export class Board {
         }
 
         this.toSquares = toSquares
-      } else if (this.selectedSquare) {
-        for (const square of this.toSquares) {
-          if (square.row == i && square.col == j) {
-            const boardJson = await postPieceMove(this.selectedSquare[0], this.selectedSquare[1], i, j)
-
-            await this.loadBoardData(boardJson)
-
-            this.selectedSquare = null
-            this.toSquares = []
-            this.clearSquareSelection()
-          }
-        }
-      }
+      } 
     }
 
     callback.bind(this)
