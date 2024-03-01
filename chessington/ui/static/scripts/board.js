@@ -155,6 +155,7 @@ export class Board {
   async buildPiece(svgGroup, piece, player) {
     const svgData = await loadPieceImage(piece, player)
     const pieceSvg = svgGroup.svg(svgData).find('svg')
+    pieceSvg.addClass(piece)
 
     // Necessary to center the SVG piece image relative to the square it's on
     pieceSvg.move(2, 0)
