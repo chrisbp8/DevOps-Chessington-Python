@@ -62,6 +62,7 @@ export class Board {
       
         if (squareData) {
           const piece = await this.buildPiece(square.group, squareData.piece, squareData.player)
+          piece.svg.addClass(this.getChessPositionForRowAndCol(i, j) + '-' + squareData.player + '-' + squareData.piece)
           piece.svg.click(this.buildClickSquareCallback(square.rect, i, j))
           this.squares[i][j].piece = piece
         }
@@ -155,7 +156,6 @@ export class Board {
   async buildPiece(svgGroup, piece, player) {
     const svgData = await loadPieceImage(piece, player)
     const pieceSvg = svgGroup.svg(svgData).find('svg')
-    pieceSvg.addClass(piece)
 
     // Necessary to center the SVG piece image relative to the square it's on
     pieceSvg.move(2, 0)
