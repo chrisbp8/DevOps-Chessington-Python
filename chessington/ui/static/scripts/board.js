@@ -62,7 +62,9 @@ export class Board {
       
         if (squareData) {
           const piece = await this.buildPiece(square.group, squareData.piece, squareData.player)
-          piece.svg.addClass(this.getChessPositionForRowAndCol(i, j) + '-' + squareData.player + '-' + squareData.piece)
+          const chessPosition = this.getChessPositionForRowAndCol(i, j)
+          const pieceId = `${chessPosition}-${squareData.player}-${squareData.piece.toLowerCase()}`
+          piece.svg.attr('id', pieceId)
           piece.svg.click(this.buildClickSquareCallback(square.rect, i, j))
           this.squares[i][j].piece = piece
         }
