@@ -37,6 +37,8 @@ export class Board {
           
           const isBlackSquare = (i + j) % 2
           const rect = this.buildRect(group, isBlackSquare)
+
+          rect.addClass(this.getChessPositionForRowAndCol(i, j))
           rect.click(this.buildClickSquareCallback(rect, i, j))
           
           this.squares[i][j] = {
@@ -60,6 +62,9 @@ export class Board {
       
         if (squareData) {
           const piece = await this.buildPiece(square.group, squareData.piece, squareData.player)
+          const chessPosition = this.getChessPositionForRowAndCol(i, j)
+          const pieceId = `${chessPosition}-${squareData.player}-${squareData.piece.toLowerCase()}`
+          piece.svg.attr('id', pieceId)
           piece.svg.click(this.buildClickSquareCallback(square.rect, i, j))
           this.squares[i][j].piece = piece
         }
@@ -73,6 +78,13 @@ export class Board {
 
   getPiece(i, j) {
     return this.squares[i][j].piece
+  }
+
+  // Returns standard chess notation position for the given row/col
+  // e.g. e1 for the initial white king on row 0 col 4
+  getChessPositionForRowAndCol(row, col) {
+    const chessFiles = "abcdefgh"
+    return `${chessFiles.charAt(col)}${row + 1}`
   }
 
   clearSquareSelection() {
