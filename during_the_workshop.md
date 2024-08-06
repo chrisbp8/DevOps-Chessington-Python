@@ -11,7 +11,7 @@ Fork and clone this repo, then follow the instructions in [README.md](./README.m
 
 ## Part 1
 
-When you're ready, run the tests (with `poetry run pytest tests`). You'll notice you have some tests already - but some are failing! Run the unit tests and see what's failed. Working in a pair, implement the minimum functionality required to pass the tests.
+When you're ready, run the tests (with `python -m pytest tests`). You'll notice you have some tests already - but some are failing! Run the unit tests and see what's failed. Working in a pair, implement the minimum functionality required to pass the tests.
 
 When you've got that working, you can add new tests in using `git cherry-pick red-3` in a failing state. Again, implement the behaviour following TDD. Repeat this for red-4 and red-5, switching driver each time.
 
